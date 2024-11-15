@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>双盒谜题 - 开始</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="./node_modules/echarts/dist/echarts.min.js"></script>
+    <style>
+        .italic-text {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+	<a href="index.html" class="back-button">返回</a>
+    <div class="description-container">
+        <div class="description">隔壁的草坪比较绿</div>
+        <div class="hint">
+            平均而言，对于一个已经打开的盒子，另一个盒子装的钱会更多，这究竟是心理作用还是客观真理？
+            游戏中的 <em class="red-text italic-text">x</em> 是一个随机变量，采样的方式是：抛一个出现正面的概率为
+             <span class="red-text italic-text">2/3</span> 的铜板，直至背面出现。如果抛了 <span class="red-text italic-text">n</span> 次，
+             就令 <em class="red-text italic-text">x</em> = <em class="red-text italic-text">2<sup>n</sup></em>, <em class="red-text italic-text">x</em> 的分布如下图.
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="container">
+            <audio id="hintAudio" src="hint.m4a" preload="auto"></audio>
+            <audio id="hintAudio2" src="n=1.m4a" preload="auto"></audio>
+            <audio id="rule" src="rule.m4a" preload="auto"></audio>
+            <!-- 直接模拟三次 -->
+            <audio id="simulation1" src="simulation1.m4a" preload="auto"></audio>
+            <audio id="simulation2" src="simulation2.m4a" preload="auto"></audio>
+            <audio id="simulation3" src="simulation3.m4a" preload="auto"></audio>
+            <audio id="simulation1000" src="simulation1000.m4a" preload="auto"></audio>
+			<div class="cube-container-col">
+			<div class="cube-container-row">
+            <div class="cube-container">
+                <div class="cube" id="cube1">
+                    <div class="top top-left"></div>
+                    <div class="top top-right"></div>
+                    <div>
+                        <span style="--i:0;"></span>
+                        <span style="--i:1;"></span>
+                        <span style="--i:2;"></span>
+                        <span style="--i:3;"></span>
+                    </div>
+                    <span class="number"></span>
+                </div>
+            </div>
+
+            <div class="cube-container">
+                <div class="cube" id="cube2">
+                    <div class="top top-left"></div>
+                    <div class="top top-right"></div>
+                    <div>
+                        <span style="--i:0;"></span>
+                        <span style="--i:1;"></span>
+                        <span style="--i:2;"></span>
+                        <span style="--i:3;"></span>
+                    </div>
+                    <span class="number">16元</span>
+                </div>
+            </div>
+			</div>
+			<div class="bar_chart" id="bar_chart"></div>
+            
+			</div>
+            <div class="rightStyle">
+                <div class="property" id="distribution">
+                    <img src="distribution.png" id="distributionImg"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+	<div class="footer" id="footer">
+		<div class="footer-container">
+		<div class="result-summary">
+            <p id="avgtext"> </p>
+			<p id="conclusion">结论是：平均而言，隔壁的草皮确实比较绿！</p>
+		</div>
+		<div class="image-container">
+			<p class="credit">设计：电子书《数学之窗》第13.3节<br>制作：邓紫菱（电子科技大学）<br> 优化：霍明熠（电子科技大学）</p>
+			<img src="binaryCode.png"/>
+		</div>
+		</div>
+	</div>
+    
+    <script src="begin.js"></script>
+</body>
+</html>

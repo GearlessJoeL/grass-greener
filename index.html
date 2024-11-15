@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>双盒谜题 - 主页</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <audio autoplay>
+        <source src="./grass_intro.mp3" />
+    </audio>
+    <div class="description-container">
+        <div class="description">隔壁的草坪比较绿</div>
+        <div class="hint">以下两个盒子，其中一个装着 <span class="red-text italic-text">x</span> 元，另一个装着两倍。</div>
+        <div class="hint">请点击任意一个盒子打开。</div>
+    </div>
+
+    <div class="main-content">
+        <div class="container">
+            <div class="cube-container-index">
+                <div class="cube" id="cube1">
+                    <div class="top top-left"></div>
+                    <div class="top top-right"></div>
+                    <div>
+                        <span style="--i:0;"></span>
+                        <span style="--i:1;"></span>
+                        <span style="--i:2;"></span>
+                        <span style="--i:3;"></span>
+                    </div>
+                    <span class="number"></span>
+                </div>
+            </div>
+            <div class="cube-container-index">
+                <div class="cube" id="cube2">
+                    <div class="top top-left"></div>
+                    <div class="top top-right"></div>
+                    <div>
+                        <span style="--i:0;"></span>
+                        <span style="--i:1;"></span>
+                        <span style="--i:2;"></span>
+                        <span style="--i:3;"></span>
+                    </div>
+                    <span class="number"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cubes = document.querySelectorAll('.cube');
+
+            cubes.forEach((cube, index) => {
+                cube.addEventListener('click', () => {
+                    const cubeId = index === 0 ? 'cube1' : 'cube2';
+                    sessionStorage.setItem('userInteracted', 'true');
+					window.open(`begin.html?cube=${cubeId}`, '_self');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

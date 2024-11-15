@@ -1,0 +1,422 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #3a8124;
+    min-height: 100vh;
+}
+
+.rightStyle{
+	flex-direction: column;
+/* 	text-align: center; */
+	width: 30%;
+/* 	margin-top: 10%; */
+}
+
+.rightHint{
+	bottom: 10%;
+	text-align: center;
+/* 	margin-bottom: 20px; */
+	color: #fff;
+	padding: 10px;
+	font-size: 30px;
+}
+
+.property{
+	padding: 10px;
+}
+
+.property img{
+	width: 100%;
+	height: auto;
+}
+
+.histogram{
+	position: relative;
+	width: 66%;
+	height: 200%;
+	bottom: 10%;
+}
+
+.description-container{
+	text-align: center;
+	margin-bottom: 1%;
+	padding-top: 1%;
+	width: 100%;
+    font-size: 60px;
+}
+
+.description {
+	color: #fff;
+    font-size: 40px;
+}
+.hint {
+	margin-top: 1%;
+	color: #fff;
+    font-size: 22px;
+}
+.red-text {
+    color: red;
+    text-shadow: 0 0 3px #DF3E40;
+}
+
+.main-content {
+    display: flex;
+    justify-content: space-around;
+	flex-direction: column;
+    align-items: start;
+    width: 100%;
+}
+.all-container {
+	display: table-row;
+	justify-content: space-around;
+	align-items: center;
+/* 	min-height: 70vh; */
+	width: 100%;
+/* 	background: #bb8a5db0; */
+	perspective: 1000px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 70vh;
+    width: 100%;
+    background: #bfffd2;
+    perspective: 1000px;
+}
+
+.scoreboard {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 更新为 space-evenly */
+    align-items: center;
+    width: 50%;
+    height: 5%; /* 确保容器充满整个可视高度 */
+/*    flex-grow: 2; /* 让得分栏充满垂直空间 */ 
+}
+
+.score {
+    background-color: rgb(184, 172, 14);
+    color: rgb(18, 17, 17);
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+    flex-grow: 1; /* 让得分栏充满垂直空间 */
+}
+
+
+
+.cube {
+    position: relative;
+    cursor: pointer;
+    width: 250px;
+    height: 250px;
+    transform-style: preserve-3d;
+    transform: rotateX(-30deg) rotateY(30deg);
+    margin-bottom: 20px; 
+}
+
+
+
+.cube div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.cube div span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('wenli.jpg');
+    background-size: cover;
+    transform: rotateY(calc(90deg * var(--i))) translateZ(125px);
+    transition: transform 0.3s ease forwards;
+}
+
+
+
+.number {
+    position: fixed; /* 更改为 fixed 定位 */
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    color: rgb(0, 0, 0);
+    font-size: 3em;
+    z-index: 10000;
+}
+
+/* .cube.expanded div span {
+    transform: rotateY(calc(90deg * var(--i))) translateZ(250px);
+    transition: transform 0.5s ease;
+} */
+.cube-container-index {
+    display: flex; /* 使用 flex 布局 */
+    flex-direction: column; /* 子元素垂直排列 */
+    align-items: center; /* 子元素在水平方向居中 */
+}
+
+.cube-container {
+    display: flex; /* 使用 flex 布局 */
+    flex-direction: column; /* 子元素垂直排列 */
+    align-items: center; /* 子元素在水平方向居中 */
+    white-space: pre;
+	padding-left: 30%;
+	padding-right: 30%;
+}
+
+
+.score {
+    bottom: 5%;
+    background-color: rgb(204, 255, 0);
+    color: rgb(18, 17, 17);
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    font-size: 26px;
+    min-width: 80%;
+    z-index: 1000000;
+}
+
+.scoreboard .score:first-child {
+    margin-top: 0%; /* 推到第一个空间的底部 */
+/*    margin-bottom: auto; */ /* 保持在中间 */
+/*    right: 50%; */
+
+    background: #bb8a5db0;
+    background-size: cover;
+}
+
+
+.scoreboard .score:last-child{
+    margin-bottom: 0%; /* 保持在中间 */
+/*    margin-top:40%; */
+/*    left: 50%; */
+
+    background: #bb8a5db0;
+    background-size: cover;
+}
+
+.top-left,
+.top-right {
+    position: absolute;
+    width: 50%; /* 使宽度为父元素的一半，从而创建长方形 */
+    height: 100%; /* 保持高度为100%以保持正方形形状 */
+    background-size: cover;
+    top: 0;
+    z-index: 1; /* 设置相同的z-index值 */
+    transform: rotateX(90deg);
+}
+
+.top-left  {
+    left: 0;
+    width: 50%;
+    /* background-image: url('wenli.jpg'), linear-gradient(to right, transparent 50%, rgba(23, 22, 22, 0) 50%); */
+    background-image: url('wenli.jpg'), linear-gradient(to right, transparent 49%, rgb(96, 45, 3) 1%, rgba(23, 22, 22, 0) 50%);
+    background-size: 50% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: left, right;
+    transform: rotateX(90deg) translateZ(125px) rotateY(0deg);
+}
+
+.top-right {
+    left: 0;
+    width: 50%;
+    /* background-image: url('wenli.jpg'), linear-gradient(to left, transparent 50%, rgba(23, 22, 22, 0) 50%); */
+    background-image: url('wenli.jpg'), linear-gradient(to right, transparent 49%, rgb(96, 45, 3) 1%, rgba(23, 22, 22, 0) 50%);
+    background-size: 50% 100%, 100% 100%;
+    background-repeat: no-repeat;
+    background-position: right, left;
+    transform: rotateX(90deg) translateZ(125px) rotateY(0deg);
+}
+
+
+.top-left.expanded {
+    transform: rotateX(90deg) translateZ(125px) rotateY(-145deg); /* 顶部左侧块向外旋转90度 */
+    transform-origin: 0 50%;
+    transition: transform 2s ease forwards; /* 添加平滑动画过渡 */
+}
+
+.top-right.expanded {
+    transform: rotateX(90deg) translateZ(125px) rotateY(145deg); /* 顶部右侧块向外旋转90度 */
+    transform-origin: 100% 50% ;
+    transition: transform 2s ease forwards; /* 添加平滑动画过渡 */
+
+}
+.top-left.collapsing {
+    transform: rotateX(90deg) translateZ(125px) rotateY(0deg); /* 回到原始位置 */
+    transform-origin: 0 50%;
+    transition: transform 1s ease forwards;
+}
+
+.top-right.collapsing {
+    transform: rotateX(90deg) translateZ(125px) rotateY(0deg); /* 回到原始位置 */
+    transform-origin: 100% 50%;
+    transition: transform 1s ease forwards;
+}
+@keyframes pop-out {
+    0% {
+        transform: translate(-50%, -50%) translateY(0);
+    }
+    30% {
+        transform: translate(-50%, -50%) translateY(-300px);
+    }
+    70% {
+        transform: translate(-50%, -50%) translateY(-300px);
+    }
+    100% {
+        transform: translate(-50%, -50%) translateY(-300px);
+        /* left: 80%; /* 移动到第一个得分栏位置 */
+        top: 66%;
+    }
+}
+
+
+.number.pop-out {
+    animation: pop-out 2s ease forwards; /* 动画持续时间 */
+}
+/* .number.stay{
+	
+} */
+
+
+.button-large {
+    font-size: 24px; /* 增大按钮字体大小 */
+    padding: 15px 30px; /* 增加按钮内边距，使按钮更大 */
+    top: 1%;
+    
+   
+}
+.buttons {
+    height: 15vh; /* 设置高度为10%的视口高度 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+#conclusion {
+    display: none;
+    width: auto;
+}
+
+
+#distribution-image {
+    display: block;
+    margin: 0 auto; /* 设置左右外边距为auto，使图像水平居中 */
+    transform: scale(1);
+}
+
+
+.bar_chart {
+    width: 600px;
+    height:400px;
+	font-size: 25px;
+	margin-left: 30%;
+	margin-top: 5%;
+}
+.bar {
+    width: 50%; /* 或您选择的任何宽度 */
+    margin: 2px;
+    text-align: center;
+    color: white;
+    /* color: rgba(213, 185, 136, 0.883); */
+
+}
+
+.theory {
+    font-size: 20px; /* 设置字号 */
+    color: #ffffff; /* 设置字体颜色 */
+}
+
+.italic-text {
+    font-style: italic;
+}
+
+.cube-container-col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 66.67%; /* 占2/3的宽度 */
+}
+
+.cube-container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+	margin-top: 15%
+}
+
+.footer {
+    display: block;
+	width: 100%;
+}
+
+.footer-container {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.4%;
+	margin-bottom: 0.4%;
+}
+
+.result-summary {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+    flex: 1; /* 使结果摘要占用剩余空间 */
+	width: 70%;
+}
+
+/* #avgtext {
+    color: white;
+    font-size: 25px;
+} */
+
+.image-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+	margin-right: 2%;
+/*    margin-left: 20px; /* 调整与result-summary之间的距离 */
+}
+
+.image-container img {
+    height: 80px;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #A0744D;
+    border: 1px solid #A0744D;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+/* .back-button:hover {
+    background-color: #634529CC;
+} */
