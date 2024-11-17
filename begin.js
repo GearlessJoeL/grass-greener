@@ -22,11 +22,38 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedCube) {
         // 模拟盒子被点击的效果
         const randomValue = getRandomVariable();
-        const displayedNumber = Math.pow(2, randomValue + 1);
-        toggleCube(selectedCube, displayedNumber, true, true);
+        const displayedNumber = 8;//Math.pow(2, randomValue + 1);
+        toggleCube(selectedCube, displayedNumber, true, false);
 
         // 显示 distribution.png
-        document.getElementById('distributionImg').style.display = 'block';
+        // document.getElementById('girl').style.display = 'block';
+
+        const audioPlayer = new Audio('grass_question1.wav');
+        setTimeout(() => audioPlayer.play(), 1000);
+        audioPlayer.addEventListener('ended', () => {
+            // 在音频结束时显示第二张图像
+            const image1 = document.getElementById("girl");
+            const image2 = document.getElementById('distributionImg');
+            image1.style.display = 'none';
+            image2.style.display = 'block';
+            const hint1 = document.getElementById("hint1");
+            const hint2 = document.getElementById("hint2");
+            hint1.style.display = 'none';
+            hint2.style.display = 'block';
+
+            const audioPlayer2 = new Audio('grass_question2.wav');
+            setTimeout(() => audioPlayer2.play(), 1000);
+            audioPlayer2.addEventListener('ended', () => {
+                const otherCube = document.getElementById(cubeId === 'cube1' ? 'cube2' : 'cube1');
+                displayCalculation(otherCube, displayedNumber, randomValue);
+
+                // 显示均值
+                const barChart = document.getElementById('bar_chart');
+                barChart.style.display = 'block';
+                
+                simulateClicks(otherCube, displayedNumber, 4, 996, 3000, 2);
+            });
+        });
 
         // 播放对应的音频
         //const hintAudio = document.getElementById('hintAudio');
@@ -34,14 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		//     console.error('Audio play failed:', error);
 		// });
         // 获取未被点击的盒子
-        const otherCube = document.getElementById(cubeId === 'cube1' ? 'cube2' : 'cube1');
-        displayCalculation(otherCube, displayedNumber, randomValue);
-
-        // 显示均值
-        const barChart = document.getElementById('bar_chart');
-        barChart.style.display = 'block';
-		
-		simulateClicks(otherCube, displayedNumber, 4, 996, 3000, 2);
+        
 		
         // // 监听 hintAudio 播放结束事件
         // hintAudio.onended = () => {
@@ -55,9 +75,10 @@ document.addEventListener('DOMContentLoaded', () => {
         numElement.style.transform = `translate(-500px, -900px) rotateY(${-rotateY}deg)`;
     }
 
-    function toggleCube(cube, number, animate = true, isRed = true) {
+    function toggleCube(cube, number, animate = true, display_pow = false) {
         const numElement = cube.querySelector('.number');
-        numElement.innerHTML = '<span class=\'red-text\'><i>n</i> = ' + Math.log2(number) + "\n<i>x</i> = " + number + "</span>";
+        console.log(display_pow);
+        numElement.innerHTML = '<span class=\"red-text\"><i>X</i> = ' + number + "</span>" + (display_pow ? ('\n<i>N</i> = ' + Math.log2(number)) : '');
         //numElement.style.color = isRed ? '#FD3A3A' : '#000000';
         numElement.style.fontSize = '60px';
 
@@ -83,17 +104,19 @@ document.addEventListener('DOMContentLoaded', () => {
         //drawChart(number);
     }
 
-    const drawChart = (sum) => {
+    const drawChart = () => {
         // 图表不要出现第零次
         const barChartElement = echarts.init(document.getElementById('bar_chart'));
         const len = values.length;
         const temp_val = [];
         const temp_lable = [];
         for (let i = 0; i < 3; i ++){
-            if (i > len) break;
+            if (i >= len) break;
+            console.log(len, i, values[len - i - 1]);
             temp_val.unshift(values[len - i - 1]);
             temp_lable.unshift(len - i);
         }
+
         // console.log('ave', sum/len);
         // temp_val.push(sum/len);
         // temp_lable.push('平均值');
@@ -169,7 +192,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const y = Math.random() < 0.6 ? num1 : num2;
         values.push(y);
         sum += y;
-        drawChart(sum);
+        drawChart();
         if (y === num1) {
             num1Count++;
         } else {

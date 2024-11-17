@@ -12,38 +12,49 @@
     </audio>
     <div class="description-container">
         <div class="description">隔壁的草坪比较绿</div>
-        <div class="hint">以下两个盒子，其中一个装着 <span class="red-text italic-text">x</span> 元，另一个装着两倍。</div>
-        <div class="hint">请点击任意一个盒子打开。</div>
+        <div class="hint">以下两个盒子，其中一个装着 <span class="red-text italic-text">X</span> 元，另一个装着两倍。<br>请点击任意一个盒子打开。</div>
     </div>
 
     <div class="main-content">
         <div class="container">
-            <div class="cube-container-index">
-                <div class="cube" id="cube1">
-                    <div class="top top-left"></div>
-                    <div class="top top-right"></div>
-                    <div>
-                        <span style="--i:0;"></span>
-                        <span style="--i:1;"></span>
-                        <span style="--i:2;"></span>
-                        <span style="--i:3;"></span>
+            <div class="cube-container-col">
+			    <div class="cube-container-row">
+                    <div class="cube-container">
+                        <div class="cube" id="cube1">
+                            <div class="top top-left"></div>
+                            <div class="top top-right"></div>
+                            <div>
+                                <span style="--i:0;"></span>
+                                <span style="--i:1;"></span>
+                                <span style="--i:2;"></span>
+                                <span style="--i:3;"></span>
+                            </div>
+                            <span class="number"></span>
+                        </div>
                     </div>
-                    <span class="number"></span>
+
+                    <div class="cube-container">
+                        <div class="cube" id="cube2">
+                            <div class="top top-left"></div>
+                            <div class="top top-right"></div>
+                            <div>
+                                <span style="--i:0;"></span>
+                                <span style="--i:1;"></span>
+                                <span style="--i:2;"></span>
+                                <span style="--i:3;"></span>
+                            </div>
+                            <span class="number">16元</span>
+                        </div>
+                    </div>
+			    </div>
+			    <div class="bar_chart" id="bar_chart"></div>
+            </div>
+            <div class="rightStyle">
+                <div class="property" id="distribution">
+                    <img src="grass greener1.png" id="girl"/>
                 </div>
             </div>
-            <div class="cube-container-index">
-                <div class="cube" id="cube2">
-                    <div class="top top-left"></div>
-                    <div class="top top-right"></div>
-                    <div>
-                        <span style="--i:0;"></span>
-                        <span style="--i:1;"></span>
-                        <span style="--i:2;"></span>
-                        <span style="--i:3;"></span>
-                    </div>
-                    <span class="number"></span>
-                </div>
-            </div>
+        
         </div>
     </div>
 
@@ -56,6 +67,8 @@
                     const cubeId = index === 0 ? 'cube1' : 'cube2';
                     sessionStorage.setItem('userInteracted', 'true');
 					window.open(`begin.html?cube=${cubeId}`, '_self');
+                    // const image = document.getElementById('girl');
+                    // image.style.transform = 'scaleX(-1)';
                 });
             });
         });

@@ -16,11 +16,19 @@
 	<a href="index.html" class="back-button">返回</a>
     <div class="description-container">
         <div class="description">隔壁的草坪比较绿</div>
-        <div class="hint">
-            平均而言，对于一个已经打开的盒子，另一个盒子装的钱会更多，这究竟是心理作用还是客观真理？
-            游戏中的 <em class="red-text italic-text">x</em> 是一个随机变量，采样的方式是：抛一个出现正面的概率为
+        <div class="hint" id="hint1">
+            有两个盒子，其中一个装着 <em class="red-text italic-text">X</em> 元，<em class="red-text italic-text">X</em> 是未知数，另一个装着两倍的钱。任选一个盒子打开，看到8元，另一个盒子装的必然是16元或4元，平均是10元，大于8元，对吗？
+            <br>
+            打开的盒子是任选的，可以打个比方，两个相邻的花园任你选一个，不论你选哪一边，结果隔壁的草皮总是比较绿，有这种事吗？
+
+            <!-- 平均而言，对于一个已经打开的盒子，另一个盒子装的钱会更多，这究竟是心理作用还是客观真理？
+            游戏中的 <em class="red-text italic-text">X</em> 是一个随机变量，采样的方式是：抛一个出现正面的概率为
              <span class="red-text italic-text">2/3</span> 的铜板，直至背面出现。如果抛了 <span class="red-text italic-text">n</span> 次，
-             就令 <em class="red-text italic-text">x</em> = <em class="red-text italic-text">2<sup>n</sup></em>, <em class="red-text italic-text">x</em> 的分布如下图.
+             就令 <em class="red-text italic-text">x</em> = <em class="red-text italic-text">2<sup>n</sup></em>, <em class="red-text italic-text">x</em> 的分布如下图. -->
+        </div>
+        <div class="hint" id="hint2" style="display: none;">
+            确实有这种事，游戏中的 <em class="red-text italic-text">X</em> 是一个随机变量，采样的方式是：抛一个出现正面的概率为 <span class="red-text italic-text">2/3</span> 的铜板，直至背面出现。<br> 
+            如果抛了 <span class="red-text italic-text">N</span> 次，就令 <em class="red-text italic-text">X</em> = <em class="red-text italic-text">2<sup>N</sup></em>, <em class="red-text italic-text">X</em> 的分布如下图.
         </div>
     </div>
     <div class="main-content">
@@ -34,41 +42,41 @@
             <audio id="simulation3" src="simulation3.m4a" preload="auto"></audio>
             <audio id="simulation1000" src="simulation1000.m4a" preload="auto"></audio>
 			<div class="cube-container-col">
-			<div class="cube-container-row">
-            <div class="cube-container">
-                <div class="cube" id="cube1">
-                    <div class="top top-left"></div>
-                    <div class="top top-right"></div>
-                    <div>
-                        <span style="--i:0;"></span>
-                        <span style="--i:1;"></span>
-                        <span style="--i:2;"></span>
-                        <span style="--i:3;"></span>
+			    <div class="cube-container-row">
+                    <div class="cube-container">
+                        <div class="cube" id="cube1">
+                            <div class="top top-left"></div>
+                            <div class="top top-right"></div>
+                            <div>
+                                <span style="--i:0;"></span>
+                                <span style="--i:1;"></span>
+                                <span style="--i:2;"></span>
+                                <span style="--i:3;"></span>
+                            </div>
+                            <span class="number"></span>
+                        </div>
                     </div>
-                    <span class="number"></span>
-                </div>
-            </div>
 
-            <div class="cube-container">
-                <div class="cube" id="cube2">
-                    <div class="top top-left"></div>
-                    <div class="top top-right"></div>
-                    <div>
-                        <span style="--i:0;"></span>
-                        <span style="--i:1;"></span>
-                        <span style="--i:2;"></span>
-                        <span style="--i:3;"></span>
+                    <div class="cube-container">
+                        <div class="cube" id="cube2">
+                            <div class="top top-left"></div>
+                            <div class="top top-right"></div>
+                            <div>
+                                <span style="--i:0;"></span>
+                                <span style="--i:1;"></span>
+                                <span style="--i:2;"></span>
+                                <span style="--i:3;"></span>
+                            </div>
+                            <span class="number">16元</span>
+                        </div>
                     </div>
-                    <span class="number">16元</span>
-                </div>
+			    </div>
+			    <div class="bar_chart" id="bar_chart"></div>
             </div>
-			</div>
-			<div class="bar_chart" id="bar_chart"></div>
-            
-			</div>
             <div class="rightStyle">
                 <div class="property" id="distribution">
-                    <img src="distribution.png" id="distributionImg"/>
+                    <img src="distribution.png" id="distributionImg" style="display: none;"/>
+                    <img src="grass greener1.png" id="girl" style="transform: scaleX(-1); display: block;"/>
                 </div>
             </div>
         </div>
