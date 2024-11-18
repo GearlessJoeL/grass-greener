@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // 显示均值
                 const barChart = document.getElementById('bar_chart');
                 barChart.style.display = 'block';
+                //增加到5个bar
                 
                 simulateClicks(otherCube, displayedNumber, 4, 996, 3000, 2);
             });
