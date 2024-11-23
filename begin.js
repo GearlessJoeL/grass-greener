@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 barChart.style.display = 'block';
                 //增加到5个bar
                 
-                simulateClicks(otherCube, displayedNumber, 4, 996, 3000, 2);
+                simulateClicks(otherCube, displayedNumber, 6, 994, 3000, 2);
             });
         });
 
@@ -106,14 +106,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const drawChart = () => {
-        // 图表不要出现第零次
         const barChartElement = echarts.init(document.getElementById('bar_chart'));
         const len = values.length;
         const temp_val = [];
         const temp_lable = [];
-        for (let i = 0; i < 3; i ++){
+        for (let i = 0; i < 5; i ++){
             if (i >= len) break;
-            console.log(len, i, values[len - i - 1]);
+            // console.log(len, i, values[len - i - 1]);
             temp_val.unshift(values[len - i - 1]);
             temp_lable.unshift(len - i);
         }
@@ -123,7 +122,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // temp_lable.push('平均值');
         var option = {
             backgroundColor: '#ffffff',
-            color: ['#ff9748'],
+            color: ['#00CC66'],
             title: {
                 text: '统计'
             },
@@ -218,6 +217,10 @@ document.addEventListener('DOMContentLoaded', () => {
             } else if (clicks === 3) {
                 document.getElementById('simulation3').play();
             } else if (clicks === 4) {
+                document.getElementById('simulation1').play();
+            } else if (clicks === 5) {
+                document.getElementById('simulation2').play();
+            } else if (clicks === 6) {
                 document.getElementById('simulation1000').play();
             }
 
@@ -286,7 +289,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     setTimeout(() => {
 					if (clickCount === 1) {
-						simulateClicks(otherCube, displayedNumber, 4, 996, 3000, 2);
+						simulateClicks(otherCube, displayedNumber, 6, 994, 3000, 2);
 					}
       //                   const hintAudio = document.getElementById('hintAudio');
       //                   // 检查用户是否在 index.html 中进行了交互
