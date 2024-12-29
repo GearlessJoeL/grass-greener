@@ -40,6 +40,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const hint2 = document.getElementById("hint2");
             hint1.style.display = 'none';
             hint2.style.display = 'block';
+            const bubble = document.getElementById("bubble");
+            bubble.style.visibility = "visible";
 
             const audioPlayer2 = new Audio('grass_question2.wav');
             setTimeout(() => audioPlayer2.play(), 1000);
@@ -255,7 +257,7 @@ document.addEventListener('DOMContentLoaded', () => {
     cubes.forEach((cube, index) => {
         cube.addEventListener('click', function () {
             if (isAudioPlaying) return;
-
+            
             clickCount++;
             const randomValue = getRandomVariable();
             const isZ = Math.random() < 0.5;
