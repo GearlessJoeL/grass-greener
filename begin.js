@@ -24,10 +24,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const randomValue = getRandomVariable();
         const displayedNumber = 8;//Math.pow(2, randomValue + 1);
         toggleCube(selectedCube, displayedNumber, true, false);
-
+        const otherCube = document.getElementById(cubeId === 'cube1' ? 'cube2' : 'cube1');
         // 显示 distribution.png
         // document.getElementById('girl').style.display = 'block';
-
+        const bubble = document.getElementById("bubble");
+        bubble.style.visibility = "visible";
+        display_choice(otherCube, displayedNumber, randomValue);
+        
         const audioPlayer = new Audio('grass_question1.wav');
         setTimeout(() => audioPlayer.play(), 1000);
         audioPlayer.addEventListener('ended', () => {
@@ -40,18 +43,18 @@ document.addEventListener('DOMContentLoaded', () => {
             const hint2 = document.getElementById("hint2");
             hint1.style.display = 'none';
             hint2.style.display = 'block';
-            const bubble = document.getElementById("bubble");
-            bubble.style.visibility = "visible";
 
             const audioPlayer2 = new Audio('grass_question2.wav');
             setTimeout(() => audioPlayer2.play(), 1000);
             audioPlayer2.addEventListener('ended', () => {
-                const otherCube = document.getElementById(cubeId === 'cube1' ? 'cube2' : 'cube1');
+                
                 displayCalculation(otherCube, displayedNumber, randomValue);
 
                 // 显示均值
                 const barChart = document.getElementById('bar_chart');
+                console.log(barChart.style.display);
                 barChart.style.display = 'block';
+                console.log(barChart.style.display);
                 //增加到5个bar
                 
                 simulateClicks(otherCube, displayedNumber, 6, 994, 3000, 2);
@@ -80,7 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function toggleCube(cube, number, animate = true, display_pow = false) {
         const numElement = cube.querySelector('.number');
-        console.log(display_pow);
+        console.log("cube type: ", typeof(cube));
         numElement.innerHTML = '<span class=\"red-text\"><i>X</i> = ' + number + "</span>" + (display_pow ? ('\n<i>N</i> = ' + Math.log2(number)) : '');
         //numElement.style.color = isRed ? '#FD3A3A' : '#000000';
         numElement.style.fontSize = '60px';
@@ -164,6 +167,23 @@ document.addEventListener('DOMContentLoaded', () => {
         numElement.style.fontSize = '30px';
     }
 
+    function display_choice(cube, number, randomValue) {
+        const numElement = cube.querySelector('.number');
+        const num1 = number / 2;
+        const num2 = number * 2;
+
+        let expression = `4 元或 16 元`;
+        if (number == 2) {
+            expression = `金额恒为4元`;
+        }
+        numElement.innerHTML = expression;
+        numElement.style.display = 'block';
+        numElement.style.transform = 'translate(-50%, -50%) translateY(-50px) translateZ(200px) translateX(-30px)';
+        numElement.style.whiteSpace = 'nowrap';
+        numElement.style.color = 'white';
+        numElement.style.fontSize = '30px';
+    }
+
     function collapseCube(cube, animate = true) {
         cube.querySelector('.top-left').classList.add('collapsing');
         cube.querySelector('.top-right').classList.add('collapsing');
@@ -200,7 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
             num2Count++;
         }
-        console.log(`sum is: ${sum}, time is: ${times}, avg is: ${sum / times} of this simulate!`);
+        // console.log(`sum is: ${sum}, time is: ${times}, avg is: ${sum / times} of this simulate!`);
 
         toggleCube2(cube, sum / times, true, true);
         return sum;
@@ -282,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             lastClickedCube = this;
-
             toggleCube(this, displayedNumber, true, true);
             if (displayedNumber > 2) {
                 setTimeout(() => {

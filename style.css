@@ -16,6 +16,7 @@ body {
 	flex-direction: column;
 /* 	text-align: center; */
 	width: 30%;
+    align-items: center;
 /* 	margin-top: 10%; */
 }
 
@@ -70,10 +71,12 @@ body {
 
 .main-content {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
 	flex-direction: column;
     align-items: start;
     width: 100%;
+    /* height: 80vh; */
+    /* min-height: 800px; */
 }
 .all-container {
 	display: table-row;
@@ -87,9 +90,9 @@ body {
 
 .container {
     display: flex;
-    justify-content: space-around;
+    /* justify-content: space-around; */
     align-items: center;
-    min-height: 70vh;
+    min-height: 800px;
     width: 100%;
     background: #bfffd2;
     perspective: 1000px;
@@ -321,19 +324,22 @@ body {
 
 
 #distribution-image {
+    width: 90%;
     display: block;
     margin: 0 auto; /* 设置左右外边距为auto，使图像水平居中 */
     transform: scale(1);
 }
 
 
-.bar_chart {
-    width: 600px;
+#bar_chart {
+    width: 90%;
     height:400px;
 	font-size: 25px;
-	margin-left: 30%;
+	/* margin-left: 30%; */
+    margin: auto;
 	margin-top: 5%;
 }
+
 .bar {
     width: 50%; /* 或您选择的任何宽度 */
     margin: 2px;
@@ -370,6 +376,7 @@ body {
 .footer {
     display: block;
 	width: 100%;
+    /* margin-top: 10vh; */
 }
 
 .footer-container {
