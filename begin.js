@@ -39,6 +39,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const image2 = document.getElementById('distributionImg');
             image1.style.display = 'none';
             image2.style.display = 'block';
+            const barChart = document.getElementById('bar_chart');
+            barChart.style.display = "block";
             const hint1 = document.getElementById("hint1");
             const hint2 = document.getElementById("hint2");
             hint1.style.display = 'none';
@@ -51,9 +53,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 displayCalculation(otherCube, displayedNumber, randomValue);
 
                 // 显示均值
-                const barChart = document.getElementById('bar_chart');
                 console.log(barChart.style.display);
-                barChart.style.display = 'block';
+                barChart.style.visibility = 'visible';
                 console.log(barChart.style.display);
                 //增加到5个bar
                 
